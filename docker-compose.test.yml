@@ -1,0 +1,16 @@
+version: "3.6"
+
+services:
+  sut:
+    build: .
+    volumes:
+      - sabnzbd_config:/config
+    command: >
+      bash -c "/opt/sabnzbd/SABnzbd.py --logging 1 --browser 0 &
+               test.sh -t 30 -u http://localhost:8080/ -e SABnzbd"
+
+volumes:
+  sabnzbd_config:
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
