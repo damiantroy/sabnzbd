@@ -3,7 +3,7 @@
 
 
 function usage() {
-    echo "Usage: $0 -t <timeout> -u <url> [-e <expect_string>]"
+    echo "Usage: $0 -t <timeout> -u <url> [-e <expect_string>] [-d]"
     exit 1
 }
 
@@ -24,6 +24,7 @@ while getopts "t:u:e:" OPT; do
         t) TIMEOUT=$OPTARG ;;
         u) URL=$OPTARG ;;
         e) EXPECT=$OPTARG ;;
+        d) DEBUG="true"
         *) usage ;;
     esac
 done
@@ -73,13 +74,16 @@ else
 fi
 if [[ ${CHECK_RESULT} -ne 0 ]]; then
     echo "*** Test failed: curl did not get an expected result"
-    echo "Grepping for: $EXPECT"
-    echo "*** OUTPUT START ****************************************************************"
-    cat $OUTPUT
-    echo "*** OUTPUT END ******************************************************************"
+    if [[ "$DEBUG" == "true" ]]; then
+        echo "Grepping for: $EXPECT"
+        echo "*** OUTPUT START ****************************************************************"
+        cat $OUTPUT
+        echo "*** OUTPUT END ******************************************************************"
+    fi
+    rm -f $OUTPUT
     exit ${CHECK_RESULT}
 fi
-
+rm -f $OUTPUT
 
 # Exit cleanly if we've made it this far
 echo "*** Test successful"
