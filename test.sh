@@ -67,13 +67,16 @@ if [[ -n "${EXPECT}" ]]; then
     else
         CHECK_RESULT=$?
     fi
-    rm -f $OUTPUT
 else
     curl -sS4f $URL > /dev/null
     CHECK_RESULT=$?
 fi
 if [[ ${CHECK_RESULT} -ne 0 ]]; then
     echo "*** Test failed: curl did not get an expected result"
+    echo "Grepping for: $EXPECT"
+    echo "*** OUTPUT START ****************************************************************"
+    cat $OUTPUT
+    echo "*** OUTPUT END ******************************************************************"
     exit ${CHECK_RESULT}
 fi
 
