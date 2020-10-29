@@ -1,2 +1,0 @@
-sabyenc==3.3.6
-cryptography==3.2

@@ -29,8 +29,8 @@ sudo chown -R ${PUID}:${PGID} ${VIDEOS_DIR} ${SABNZBD_CONFIG_DIR}
 sudo podman build -t sabnzbd .
 
 sudo podman run -d \
-    --pod video \
-    --name=sabnzbd \
+    --name sabnzbd \
+    --network host \
     -e PUID=${PUID} \
     -e PGID=${PGID} \
     -e TZ=${TZ} \
