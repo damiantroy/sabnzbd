@@ -11,9 +11,19 @@
 | VOLUME  | /config  | Configuration directory
 | EXPOSE  | 8080/tcp | HTTP port for web interface
 
-## Instructions
+## Building
 
-Build and run:
+To build and test the image, run:
+
+```shell script
+make all
+```
+
+## Running
+
+More complete instructions are in my [VideoBot Tutorial](https://github.com/damiantroy/videobot),
+but this should be enough to get you started.
+
 ```shell script
 PUID=1001
 PGID=1001
@@ -22,11 +32,8 @@ VIDEOS_DIR=/videos
 SABNZBD_CONFIG_DIR=/etc/config/sabnzbd
 SABNZBD_IMAGE=localhost/sabnzbd # Or damiantroy/sabnzbd if deploying from docker.io
 
-sudo mkdir -p ${VIDEOS_DIR} ${SABNZBD_CONFIG_DIR}
-sudo chown -R ${PUID}:${PGID} ${VIDEOS_DIR} ${SABNZBD_CONFIG_DIR}
-
-# You can skip the 'build' step if deploying from docker.io
-sudo podman build -t sabnzbd .
+sudo mkdir -p "${VIDEOS_DIR}" "${SABNZBD_CONFIG_DIR}"
+sudo chown -R ${PUID}:${PGID} "${VIDEOS_DIR}" "${SABNZBD_CONFIG_DIR}"
 
 sudo podman run -d \
     --name sabnzbd \
@@ -34,7 +41,7 @@ sudo podman run -d \
     -e PUID=${PUID} \
     -e PGID=${PGID} \
     -e TZ=${TZ} \
-    -v ${SABNZBD_CONFIG_DIR}:/config:Z \
-    -v ${VIDEOS_DIR}:/videos:z \
-    ${SABNZBD_IMAGE}
+    -v "${SABNZBD_CONFIG_DIR}:/config:Z" \
+    -v "${VIDEOS_DIR}:/videos:z" \
+    "${SABNZBD_IMAGE}"
 ```
