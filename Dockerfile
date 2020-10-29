@@ -16,12 +16,12 @@ COPY test.sh /usr/local/bin/
 VOLUME /videos
 EXPOSE 8080
 RUN yum -y install epel-release http://repository.it4i.cz/mirrors/repoforge/redhat/el7/en/x86_64/rpmforge/RPMS/rpmforge-release-0.5.3-1.el7.rf.x86_64.rpm && \
-    yum -y install nmap-ncat git unzip unrar p7zip par2cmdline python-cheetah python2-pip && \
+    yum -y install nmap-ncat git unzip unrar p7zip par2cmdline python3-pip && \
     yum clean all
-COPY requirements.txt /tmp/
-RUN pip install -r /tmp/requirements.txt
 RUN git clone --branch master https://github.com/sabnzbd/sabnzbd.git /opt/sabnzbd && \
     chown -R $PUID:$PGID /opt/sabnzbd
+RUN python3 -m pip install --upgrade pip setuptools wheel
+RUN python3 -m pip install -r /opt/sabnzbd/requirements.txt
 RUN su - videos -c 'cd /opt/sabnzbd && /opt/sabnzbd/tools/make_mo.py'
 
 # Runtime
