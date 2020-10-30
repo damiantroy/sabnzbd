@@ -1,6 +1,22 @@
 # SABnzbd newsreader CentOS container
 
-## Configuration
+This is a CentOS 7 container for [SABnzbd](https://sabnzbd.org/), a free and easy binary newsreader.
+
+
+## Building
+
+To build and test the image, run:
+
+```shell script
+make all # build test
+```
+
+## Running
+
+More complete instructions are in my [VideoBot Tutorial](https://github.com/damiantroy/videobot),
+but this should be enough to get you started.
+
+### Configuration
 
 | Command | Config   | Description
 | ------- | -------- | -----
@@ -11,18 +27,6 @@
 | VOLUME  | /config  | Configuration directory
 | EXPOSE  | 8080/tcp | HTTP port for web interface
 
-## Building
-
-To build and test the image, run:
-
-```shell script
-make all
-```
-
-## Running
-
-More complete instructions are in my [VideoBot Tutorial](https://github.com/damiantroy/videobot),
-but this should be enough to get you started.
 
 ```shell script
 PUID=1001
