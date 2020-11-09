@@ -2,7 +2,6 @@
 
 This is a CentOS 7 container for [SABnzbd](https://sabnzbd.org/), a free and easy binary newsreader.
 
-
 ## Building
 
 To build and test the image, run:
