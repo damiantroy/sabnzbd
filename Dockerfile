@@ -16,8 +16,8 @@ COPY test.sh /usr/local/bin/
 # App
 VOLUME /videos
 EXPOSE 8080
-RUN yum -y install epel-release http://repository.it4i.cz/mirrors/repoforge/redhat/el7/en/x86_64/rpmforge/RPMS/rpmforge-release-0.5.3-1.el7.rf.x86_64.rpm && \
-    yum -y install nmap-ncat git unzip p7zip par2cmdline python3-pip && \
+RUN yum -y install epel-release https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-7.noarch.rpm https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-7.noarch.rpm && \
+    yum -y install nmap-ncat git unzip p7zip par2cmdline python3-pip unrar && \
     yum clean all
 RUN git clone --branch master https://github.com/sabnzbd/sabnzbd.git /opt/sabnzbd && \
     chown -R $PUID:$PGID /opt/sabnzbd
