@@ -1,6 +1,6 @@
-# SABnzbd newsreader CentOS container
+# SABnzbd newsreader Rocky Linux container
 
-This is a CentOS 8 container for [SABnzbd](https://sabnzbd.org/), a free and easy binary newsreader.
+This is a Rocky Linux 8 container for [SABnzbd](https://sabnzbd.org/), a free and easy binary newsreader.
 
 ## Building
 
