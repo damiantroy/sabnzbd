@@ -16,7 +16,7 @@ COPY test.sh /usr/local/bin/
 # App
 RUN dnf -y install epel-release && \
     dnf -y localinstall --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm && \
-    dnf -y install nmap-ncat git unzip p7zip par2cmdline python3-pip unrar && \
+    dnf -y install nmap-ncat git unzip p7zip par2cmdline python39-pip unrar && \
     dnf clean all
 RUN git clone --branch master https://github.com/sabnzbd/sabnzbd.git /opt/sabnzbd && \
     chown -R "$PUID:$PGID" /opt/sabnzbd && \
